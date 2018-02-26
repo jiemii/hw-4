@@ -12,8 +12,8 @@ var playingA, playingS, playingD, playingF, playingQ, playingW;
 var playing = false;
 
 function preload() {
-bird = loadSound('assets/ bird.mp3');
-instrument = loadSound('assets/ instrument.mp3')
+bird = loadSound('assets/bird.mp3');
+instrument = loadSound('assets/instrument.mp3')
  }
 
 function setup() {
@@ -84,6 +84,8 @@ playingA = true;
   } else if (key == 'Q') {
     bird.play();
     bird.setVolume(0.5);
+    playingF = true;
+
   } else if (key == 'W') {
     osc = oscW;
     instrument.play();
@@ -147,5 +149,13 @@ function draw() {
 	    fill(255, 0, 255);
 	    noStroke();
 	    rect(0, 50, 50, 50);
+	  }if (playingQ) {
+	    fill(0, 0, 100);
+	    noStroke();
+	    rect(0, 0, width, height);
+	  }if (playingW) {
+	    fill(50, 150, 255);
+	    noStroke();
+	    rect(50, 50, width, height);
 	  }
-	}
+}
