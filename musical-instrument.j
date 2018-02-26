@@ -12,44 +12,44 @@ var playingA, playingS, playingD, playingF, playingQ, playingW;
 var playing = false;
 
 function preload() {
-bird = loadSound('assets/bird.mp3');
-instrument = loadSound('assets/instrument.mp3')
- }
+  bird = loadSound('assets/bird.mp3');
+  instrument = loadSound('assets/instrument.mp3')
+}
 
 function setup() {
   backgroundColor = color(10, 10, 15);
   textAlign(CENTER);
-  
+
   oscA = new p5.Oscillator();
   oscA.setType('sine');
   oscA.freq(freqA);
   oscA.amp(0);
   oscA.start();
-  
+
   oscS = new p5.Oscillator();
   oscS.setType('sine');
   oscS.freq(freqS);
   oscS.amp(0);
   oscS.start();
-  
+
   oscD = new p5.Oscillator();
   oscD.setType('sine');
   oscD.freq(freqD);
   oscD.amp(0);
   oscD.start();
-  
+
   oscF = new p5.Oscillator();
   oscF.setType('sine');
   oscF.freq(freqF);
   oscF.amp(0);
   oscF.start();
-  
+
   oscQ = new p5.Oscillator();
   oscQ.setType('sine');
   oscQ.freq(freqQ);
   oscQ.amp(0);
   oscQ.start();
-  
+
   oscW = new p5.Oscillator();
   oscW.setType('sine');
   oscW.freq(freqW);
@@ -59,10 +59,10 @@ function setup() {
 
 function draw() {
   if (playing) {
-background(0, 255, 255);
-	  } else {
-	    background(255, 0, 255);
-	  }
+    background(0, 255, 255);
+  } else {
+    background(255, 0, 255);
+  }
 }
 
 
@@ -71,7 +71,7 @@ function keyPressed() {
   var osc;
   if (key == 'A') {
     osc = oscA;
-playingA = true;
+    playingA = true;
   } else if (key == 'S') {
     osc = oscS;
     playingS = true;
@@ -82,14 +82,15 @@ playingA = true;
     osc = oscF;
     playingF = true;
   } else if (key == 'Q') {
+    osc = oscW;
     bird.play();
-    bird.setVolume(0.5);
-    playingF = true;
+    bird.setVolume(0.3);
+    playingQ = true;
 
   } else if (key == 'W') {
     osc = oscW;
     instrument.play();
-    instrument.setVolume(0.3);
+    instrument.setVolume(0.2);
     playingW = true;
   }
   if (osc) {
@@ -122,40 +123,42 @@ function keyReleased() {
   }
   if (osc) {
     osc.amp(0, 0.8);
-    playingA = false, playingS = false, playingD = false, playingF = false
-    playingQ = false, playingW = false;
+    playingA = false, playingS = false, playingD = false,
+      playingF = false, playingQ = false, playingW = false;
   }
 }
 
 function draw() {
-	  background(255);
-	  colorMode(RGB);
-	  if (playingA) {
-	    fill(100, 255, 0);
-	    noStroke();
-	    rect(0, 0, 50, 50);
-	  }
-	  if (playingS) {
-	    fill(150, 50, 255);
-	    noStroke();
-	    rect(50, 50, 50, 50);
-	  }
-	  if (playingD) {
-	    fill(0, 255, 255);
-	    noStroke();
-	    rect(50, 0, 50, 50);
-	  }
-	  if (playingF) {
-	    fill(255, 0, 255);
-	    noStroke();
-	    rect(0, 50, 50, 50);
-	  }if (playingQ) {
-	    fill(0, 0, 100);
-	    noStroke();
-	    rect(0, 0, width, height);
-	  }if (playingW) {
-	    fill(50, 150, 255);
-	    noStroke();
-	    rect(50, 50, width, height);
-	  }
+  background(255);
+  colorMode(RGB);
+  if (playingA) {
+    fill(100, 255, 0);
+    noStroke();
+    rect(0, 0, 50, 50);
+  }
+  if (playingS) {
+    fill(150, 50, 255);
+    noStroke();
+    rect(50, 50, 50, 50);
+  }
+  if (playingD) {
+    fill(0, 255, 255);
+    noStroke();
+    rect(50, 0, 50, 50);
+  }
+  if (playingF) {
+    fill(255, 0, 255);
+    noStroke();
+    rect(0, 50, 50, 50);
+  }
+  if (playingQ) {
+    fill(0, 0, 255);
+    noStroke();
+    rect(0, 0, width/2, height);
+  }
+  if (playingW) {
+    fill(50, 150, 255);
+    noStroke();
+    rect(50, 0, width/2, height);
+  }
 }
