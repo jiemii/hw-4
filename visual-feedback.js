@@ -1,3 +1,6 @@
+var ballx = 0;
+var bally = 0;
+
 var freqA = 174;
 var freqS = 196;
 var freqD = 220;
@@ -8,27 +11,28 @@ var playingA, playingS, playingD, playingF;
 var playing = false;
 
 function setup() {
+  createCanvas(400, 400);
   backgroundColor = color(255, 0, 255);
   textAlign(CENTER);
-  
+
   oscA = new p5.Oscillator();
   oscA.setType('triangle');
   oscA.freq(freqA);
   oscA.amp(0);
   oscA.start();
-  
+
   oscS = new p5.Oscillator();
   oscS.setType('triangle');
   oscS.freq(freqS);
   oscS.amp(0);
   oscS.start();
-  
+
   oscD = new p5.Oscillator();
   oscD.setType('triangle');
   oscD.freq(freqD);
   oscD.amp(0);
   oscD.start();
-  
+
   oscF = new p5.Oscillator();
   oscF.setType('triangle');
   oscF.freq(freqF);
@@ -86,34 +90,44 @@ function keyReleased() {
   }
   if (osc) {
     osc.amp(0, 0.1);
-    playingA = false, 
-		playingS = false, 
-		playingD = false,
-		playingF = false;
+    playingA = false,
+      playingS = false,
+      playingD = false,
+      playingF = false;
   }
 }
 
 function draw() {
-	  background(255);
-	  colorMode(RGB);
-	  if (playingA) {
-	    fill(100, 255, 0);
-	    noStroke();
-	    rect(0, 0, 50, 50);
-	  }
-	  if (playingS) {
-	    fill(150, 50, 255);
-	    noStroke();
-	    rect(50, 50, 50, 50);
-	  }
-	  if (playingD) {
-	    fill(0, 255, 255);
-	    noStroke();
-	    rect(50, 0, 50, 50);
-	  }
-	  if (playingF) {
-	    fill(255, 0, 255);
-	    noStroke();
-	    rect(0, 50, 50, 50);
-	  }
-	}
+  background(255);
+  colorMode(RGB);
+  if (playingA) {
+    fill(100, 255, 0);
+    noStroke();
+    rect(0, 0, height / 2, height / 2);
+    fill(255, 255, 0);
+    ellipse(ballx, bally, 55, 55);
+    if (ballx > width) {
+      ballx = -ballx;
+      bally = -bally;
+    } else {
+      ballx = ballx + 5;
+      bally = bally + 5;
+    }
+
+    if (playingS) {
+      fill(150, 50, 255);
+      noStroke();
+      rect(width / 2, 0, height / 2, height / 2);
+    }
+    if (playingD) {
+      fill(0, 255, 255);
+      noStroke();
+      rect(0, height / 2, height / 2, height / 2);
+    }
+    if (playingF) {
+      fill(255, 0, 255);
+      noStroke();
+      rect(width / 2, height / 2, height / 2, height / 2);
+    }
+  }
+}
